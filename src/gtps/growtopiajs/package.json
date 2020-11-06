@@ -1,0 +1,17 @@
+{
+  "name": "fikabot",
+  "version": "1.0.0",
+  "description": "FikaWhatsapp",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "angel",
+  "license": "ISC",
+  "dependencies": {
+    "qrcode-terminal": "^0.12.0",
+    "request": "^2.88.2",
+    "require": "^2.4.20",
+    "whatsapp-web.js": "^1.11.0"
+  }
+}
