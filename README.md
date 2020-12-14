@@ -10,3 +10,4 @@ GTPS Status For Whatsapp Web.
 
 # Update Log
 ***1.0 : Count, Status Up And Down, Player Online***
+**2.0 : Simple Only 1 Scanning QR Code.**
