@@ -1,5 +1,4 @@
 const {Client} = require("whatsapp-web.js")
-let client = new Client();
 const { exec } = require("child_process");
 const kill = require("child_process").exec
 const code = require("qrcode-terminal")
@@ -19,10 +18,26 @@ const isRunning = (query, cb) => {
         cb(stdout.toLowerCase().indexOf(query.toLowerCase()) > -1);
     });
 }
+const SESSION_FILE_PATH = './session.json';
+let sessionCfg;
+if (fs.existsSync(SESSION_FILE_PATH)) {
+    sessionCfg = require(SESSION_FILE_PATH);
+}
+
+const client = new Client({ puppeteer: { headless: true }, session: sessionCfg });
 client.on('qr', (qr) => {
 code.generate(qr, {small: true});
 })
+client.on('authenticated', (session) => {
+  //console.log('AUTHENTICATED', session);
+  sessionCfg=session;
+  fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
+      if (err) {
 
+          console.error(err);
+      }
+  });
+});
 client.on('ready', () => {
     console.log("Bot Dijalankan")
 })
